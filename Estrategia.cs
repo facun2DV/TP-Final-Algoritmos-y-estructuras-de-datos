@@ -19,12 +19,28 @@ namespace tpfinal
 
         public List<string> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
 		{
-			return ["Implementar"];
+			List<string> urls=new List<string>();
+			string url=""+arbol.getDatoRaiz().Nombre.Trim();
+			if (arbol.esHoja()) {
+				return urls;
+			}else{
+				recorrido(arbol,urls,url);
+			}
+
+			return urls;
+		}
+
+        public static void recorrido(ArbolGeneral<ItemCat> arbol,List<string> urls,string url)
+		{
+			foreach (var x in arbol.getHijos()) {
+				if (x.getDatoRaiz().Tipo==TipoElemento.Producto ) {
+					urls.Add(url+"/"+x.getDatoRaiz().Nombre.Trim());
+				}else{
+					recorrido(x,urls,url+"/"+x.getDatoRaiz().Nombre.Trim());
+				}
+			}
 		}
         
-
-              
-
         public List<List<string>> ConsultaNiveles(ArbolGeneral<ItemCat> arbol)
 		{
             return [["Implementar"]];
