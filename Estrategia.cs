@@ -71,8 +71,45 @@ namespace tpfinal
         
         public List<List<string>> ConsultaNiveles(ArbolGeneral<ItemCat> arbol)
 		{
-            return [["Implementar"]];
+			List<List<string>> niveles=new List<List<string>>();
+			if(arbol.esHoja())
+			{
+				List<string> aux=new List<string>();
+				aux.Add(arbol.getDatoRaiz().Nombre);
+				niveles.Add(aux);
+				return niveles;
+			}
+			else
+			{
+				recorrido_nivel(arbol,niveles);
+			}
+            return niveles;
         }
+
+		public void recorrido_nivel(ArbolGeneral<ItemCat> arbol,List<List<string>> niveles)
+		{
+
+			Cola<ArbolGeneral<ItemCat>> c= new Cola<ArbolGeneral<ItemCat>>();
+			ArbolGeneral<ItemCat> aux;
+			
+			c.encolar(arbol);
+			while (!c.esVacia())
+			{
+				int cant=c.cantidadElementos();
+				List<string> l_aux=new List<string>();
+				
+				for (int i = 0; i < cant; i++)
+				{
+					aux=c.desencolar();
+					l_aux.Add(aux.getDatoRaiz().Nombre);
+					foreach (var hijo in aux.getHijos())
+					{
+						c.encolar(hijo);
+					}
+				}
+				niveles.Add(l_aux);
+			}
+		}
 
 
         public List<ItemCat> Todos(ArbolGeneral<ItemCat> arbol)
