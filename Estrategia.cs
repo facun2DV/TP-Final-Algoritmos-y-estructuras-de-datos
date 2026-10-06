@@ -76,7 +76,26 @@ namespace tpfinal
 
         public List<ItemCat> Buscar(ArbolGeneral<ItemCat> arbol, string elementoABuscar)
 		{
-			return [];
+            List<ItemCat> resultados=new List<ItemCat>();
+			if (arbol.esHoja()) {
+				return resultados;
+			}else{
+				_busqueda(arbol,elementoABuscar.ToLower().Trim(),resultados);
+			}
+			 
+			return resultados;
+		}
+        private void _busqueda(ArbolGeneral<ItemCat> arbol,string elemento,List<ItemCat> resultados)
+		{
+			foreach (ArbolGeneral<ItemCat> X in arbol.getHijos()) {
+				if (X.getDatoRaiz().Tipo== TipoElemento.Producto) { 
+					if ((X.getDatoRaiz() != null) && (X.getDatoRaiz().Nombre.ToLower().Trim().Contains(elemento))) {
+						resultados.Add(X.getDatoRaiz());
+					}
+				}else{
+					_busqueda(X,elemento,resultados);
+				}
+			}
 		}
             
     }
