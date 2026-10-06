@@ -33,8 +33,26 @@ namespace tpfinal
 
         public List<ItemCat> Todos(ArbolGeneral<ItemCat> arbol)
         {
-            return  [];
+            List<ItemCat> productos=new List<ItemCat>();
+			if (arbol.esHoja()) {
+				return productos;
+			}else{
+				agruparProd(arbol,productos);
+			}
+			 
+			return productos;
         }
+
+        private void agruparProd(ArbolGeneral<ItemCat> arbol,List<ItemCat> productos)
+		{
+			foreach (ArbolGeneral<ItemCat> X in arbol.getHijos()) {
+				if (X.getDatoRaiz().Tipo== TipoElemento.Producto && X.getDatoRaiz != null) { 
+						productos.Add(X.getDatoRaiz());
+				}else{
+					agruparProd(X,productos);
+				}
+			}
+		}
 
         public void Agregar(ArbolGeneral<ItemCat> arbol, ItemCat dato, string rutaAlPadre)// 
 		{
