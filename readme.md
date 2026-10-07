@@ -87,8 +87,8 @@ Reflexión/conclusión sobre la experiencia del proyecto.
 
 👥 Integrantes del Grupo
 
-Facundo Della Vedova - 76984
+Facundo Della Vedova
 
-Eitan Zarate - [Legajo]
+Eitan Zarate 
 
-Fernando Zarazola - [Legajo]
+Fernando Zarazola
