@@ -143,7 +143,7 @@ namespace tpfinal
 			}
 		}
 
-        public void Agregar(ArbolGeneral<ItemCat> arbol, ItemCat dato, string rutaAlPadre)// 
+        public void Agregar(ArbolGeneral<ItemCat> arbol, ItemCat dato, string rutaAlPadre)
 		{
             List<string> ruta = new List<string>(rutaAlPadre.Split('/'));
             ArbolGeneral<ItemCat> actual= arbol;
