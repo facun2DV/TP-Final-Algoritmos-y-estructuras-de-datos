@@ -13,8 +13,15 @@ namespace tpfinal
 		
 		public string GetUrlSeoPorId(ArbolGeneral<ItemCat> arbol, int id)
         {
-            string url = arbol.getDatoRaiz().Nombre.Trim();
-            return RecorridoSeoPorId(arbol, id, url);
+			if (arbol.esHoja())
+			{
+				return arbol.getDatoRaiz().Nombre.Trim();
+			}
+			else
+			{
+				string url = arbol.getDatoRaiz().Nombre.Trim();
+            	return RecorridoSeoPorId(arbol, id, url);
+			}
         }
 
         private string RecorridoSeoPorId(ArbolGeneral<ItemCat> arbol, int id, string url)
@@ -58,9 +65,10 @@ namespace tpfinal
 			return urls;
 		}
 
-        public static void recorrido(ArbolGeneral<ItemCat> arbol,List<string> urls,string url)
+        private static void recorrido(ArbolGeneral<ItemCat> arbol,List<string> urls,string url)
 		{
 			foreach (var x in arbol.getHijos()) {
+				
 				if (x.getDatoRaiz().Tipo==TipoElemento.Producto ) {
 					urls.Add(url+"/"+x.getDatoRaiz().Nombre.Trim());
 				}else{
@@ -86,7 +94,7 @@ namespace tpfinal
             return niveles;
         }
 
-		public void recorrido_nivel(ArbolGeneral<ItemCat> arbol,List<List<string>> niveles)
+		private void recorrido_nivel(ArbolGeneral<ItemCat> arbol,List<List<string>> niveles)
 		{
 
 			Cola<ArbolGeneral<ItemCat>> c= new Cola<ArbolGeneral<ItemCat>>();
